@@ -5,11 +5,11 @@ foreach ($rootDir in Get-ChildItem $path) {
     Write-Host "On $($rootDir.FullName)"
     try {
         foreach($item in Get-Childitem -Recurse $rootDir.FullName -ErrorAction Stop) {
-            if (!$item.PSIsContainer -and $Item.LastWriteTeam -It $limit -and $item.Name -and $item.Name -like "*.*"){
+            if (!$item.PSIsContainer -and $Item.LastWriteTeam -lt $limit -and $item.Name -and $item.Name -like "*.*"){
                 Remove-item $item.FullName -Force -Verbose
             }
         }
     } catch {
-        Write-Host "Error: $($_.Exception.Message)"
+        Write-Host "Error"
     }
 }
